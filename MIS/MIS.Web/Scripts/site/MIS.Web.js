@@ -11,6 +11,256 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var MIS;
 (function (MIS) {
+    var TimekeepingDB;
+    (function (TimekeepingDB) {
+        var DtrDialog = (function (_super) {
+            __extends(DtrDialog, _super);
+            function DtrDialog() {
+                _super.apply(this, arguments);
+                this.form = new TimekeepingDB.DtrForm(this.idPrefix);
+            }
+            DtrDialog.prototype.getFormKey = function () { return TimekeepingDB.DtrForm.formKey; };
+            DtrDialog.prototype.getIdProperty = function () { return TimekeepingDB.DtrRow.idProperty; };
+            DtrDialog.prototype.getLocalTextPrefix = function () { return TimekeepingDB.DtrRow.localTextPrefix; };
+            DtrDialog.prototype.getService = function () { return TimekeepingDB.DtrService.baseUrl; };
+            DtrDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], DtrDialog);
+            return DtrDialog;
+        }(Serenity.EntityDialog));
+        TimekeepingDB.DtrDialog = DtrDialog;
+    })(TimekeepingDB = MIS.TimekeepingDB || (MIS.TimekeepingDB = {}));
+})(MIS || (MIS = {}));
+var MIS;
+(function (MIS) {
+    var Common;
+    (function (Common) {
+        var GridEditorBase = (function (_super) {
+            __extends(GridEditorBase, _super);
+            function GridEditorBase(container) {
+                _super.call(this, container);
+                this.nextId = 1;
+            }
+            GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
+            GridEditorBase.prototype.id = function (entity) {
+                return entity.__id;
+            };
+            GridEditorBase.prototype.save = function (opt, callback) {
+                var _this = this;
+                var request = opt.request;
+                var row = Q.deepClone(request.Entity);
+                var id = row.__id;
+                if (id == null) {
+                    row.__id = this.nextId++;
+                }
+                if (!this.validateEntity(row, id)) {
+                    return;
+                }
+                var items = this.view.getItems().slice();
+                if (id == null) {
+                    items.push(row);
+                }
+                else {
+                    var index = Q.indexOf(items, function (x) { return _this.id(x) === id; });
+                    items[index] = Q.deepClone({}, items[index], row);
+                }
+                this.setEntities(items);
+                callback({});
+            };
+            GridEditorBase.prototype.deleteEntity = function (id) {
+                this.view.deleteItem(id);
+                return true;
+            };
+            GridEditorBase.prototype.validateEntity = function (row, id) {
+                return true;
+            };
+            GridEditorBase.prototype.setEntities = function (items) {
+                this.view.setItems(items, true);
+            };
+            GridEditorBase.prototype.getNewEntity = function () {
+                return {};
+            };
+            GridEditorBase.prototype.getButtons = function () {
+                var _this = this;
+                return [{
+                        title: this.getAddButtonCaption(),
+                        cssClass: 'add-button',
+                        onClick: function () {
+                            _this.createEntityDialog(_this.getItemType(), function (dlg) {
+                                var dialog = dlg;
+                                dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
+                                dialog.loadEntityAndOpenDialog(_this.getNewEntity());
+                            });
+                        }
+                    }];
+            };
+            GridEditorBase.prototype.editItem = function (entityOrId) {
+                var _this = this;
+                var id = entityOrId;
+                var item = this.view.getItemById(id);
+                this.createEntityDialog(this.getItemType(), function (dlg) {
+                    var dialog = dlg;
+                    dialog.onDelete = function (opt, callback) {
+                        if (!_this.deleteEntity(id)) {
+                            return;
+                        }
+                        callback({});
+                    };
+                    dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
+                    dialog.loadEntityAndOpenDialog(item);
+                });
+                ;
+            };
+            GridEditorBase.prototype.getEditValue = function (property, target) {
+                target[property.name] = this.value;
+            };
+            GridEditorBase.prototype.setEditValue = function (source, property) {
+                this.value = source[property.name];
+            };
+            Object.defineProperty(GridEditorBase.prototype, "value", {
+                get: function () {
+                    return this.view.getItems().map(function (x) {
+                        var y = Q.deepClone(x);
+                        delete y['__id'];
+                        return y;
+                    });
+                },
+                set: function (value) {
+                    var _this = this;
+                    this.view.setItems((value || []).map(function (x) {
+                        var y = Q.deepClone(x);
+                        y.__id = _this.nextId++;
+                        return y;
+                    }), true);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            GridEditorBase.prototype.getGridCanLoad = function () {
+                return false;
+            };
+            GridEditorBase.prototype.usePager = function () {
+                return false;
+            };
+            GridEditorBase.prototype.getInitialTitle = function () {
+                return null;
+            };
+            GridEditorBase.prototype.createQuickSearchInput = function () {
+            };
+            GridEditorBase = __decorate([
+                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+                Serenity.Decorators.editor(),
+                Serenity.Decorators.element("<div/>")
+            ], GridEditorBase);
+            return GridEditorBase;
+        }(Serenity.EntityGrid));
+        Common.GridEditorBase = GridEditorBase;
+    })(Common = MIS.Common || (MIS.Common = {}));
+})(MIS || (MIS = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MIS;
+(function (MIS) {
+    var TimekeepingDB;
+    (function (TimekeepingDB) {
+        var DtrEditor = (function (_super) {
+            __extends(DtrEditor, _super);
+            function DtrEditor(container) {
+                _super.call(this, container);
+            }
+            DtrEditor.prototype.getColumnsKey = function () { return 'TimekeepingDB.Dtr'; };
+            DtrEditor.prototype.getDialogType = function () { return TimekeepingDB.DtrEditorDialog; };
+            DtrEditor.prototype.getLocalTextPrefix = function () { return TimekeepingDB.DtrRow.localTextPrefix; };
+            DtrEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], DtrEditor);
+            return DtrEditor;
+        }(MIS.Common.GridEditorBase));
+        TimekeepingDB.DtrEditor = DtrEditor;
+    })(TimekeepingDB = MIS.TimekeepingDB || (MIS.TimekeepingDB = {}));
+})(MIS || (MIS = {}));
+var MIS;
+(function (MIS) {
+    var Common;
+    (function (Common) {
+        var GridEditorDialog = (function (_super) {
+            __extends(GridEditorDialog, _super);
+            function GridEditorDialog() {
+                _super.apply(this, arguments);
+            }
+            GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
+            GridEditorDialog.prototype.destroy = function () {
+                this.onSave = null;
+                this.onDelete = null;
+                _super.prototype.destroy.call(this);
+            };
+            GridEditorDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                // apply changes button doesn't work properly with in-memory grids yet
+                if (this.applyChangesButton) {
+                    this.applyChangesButton.hide();
+                }
+            };
+            GridEditorDialog.prototype.saveHandler = function (options, callback) {
+                this.onSave && this.onSave(options, callback);
+            };
+            GridEditorDialog.prototype.deleteHandler = function (options, callback) {
+                this.onDelete && this.onDelete(options, callback);
+            };
+            GridEditorDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GridEditorDialog);
+            return GridEditorDialog;
+        }(Serenity.EntityDialog));
+        Common.GridEditorDialog = GridEditorDialog;
+    })(Common = MIS.Common || (MIS.Common = {}));
+})(MIS || (MIS = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MIS;
+(function (MIS) {
+    var TimekeepingDB;
+    (function (TimekeepingDB) {
+        var DtrEditorDialog = (function (_super) {
+            __extends(DtrEditorDialog, _super);
+            function DtrEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new TimekeepingDB.DtrForm(this.idPrefix);
+            }
+            DtrEditorDialog.prototype.getFormKey = function () { return TimekeepingDB.DtrForm.formKey; };
+            DtrEditorDialog.prototype.getLocalTextPrefix = function () { return TimekeepingDB.DtrRow.localTextPrefix; };
+            DtrEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], DtrEditorDialog);
+            return DtrEditorDialog;
+        }(MIS.Common.GridEditorDialog));
+        TimekeepingDB.DtrEditorDialog = DtrEditorDialog;
+    })(TimekeepingDB = MIS.TimekeepingDB || (MIS.TimekeepingDB = {}));
+})(MIS || (MIS = {}));
+var MIS;
+(function (MIS) {
+    var TimekeepingDB;
+    (function (TimekeepingDB) {
+        var DtrGrid = (function (_super) {
+            __extends(DtrGrid, _super);
+            function DtrGrid(container) {
+                _super.call(this, container);
+            }
+            DtrGrid.prototype.getColumnsKey = function () { return 'TimekeepingDB.Dtr'; };
+            DtrGrid.prototype.getDialogType = function () { return TimekeepingDB.DtrDialog; };
+            DtrGrid.prototype.getIdProperty = function () { return TimekeepingDB.DtrRow.idProperty; };
+            DtrGrid.prototype.getLocalTextPrefix = function () { return TimekeepingDB.DtrRow.localTextPrefix; };
+            DtrGrid.prototype.getService = function () { return TimekeepingDB.DtrService.baseUrl; };
+            DtrGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], DtrGrid);
+            return DtrGrid;
+        }(Serenity.EntityGrid));
+        TimekeepingDB.DtrGrid = DtrGrid;
+    })(TimekeepingDB = MIS.TimekeepingDB || (MIS.TimekeepingDB = {}));
+})(MIS || (MIS = {}));
+var MIS;
+(function (MIS) {
     var Northwind;
     (function (Northwind) {
         var TerritoryDialog = (function (_super) {
@@ -617,42 +867,6 @@ var MIS;
         Northwind.ProductGrid = ProductGrid;
     })(Northwind = MIS.Northwind || (MIS.Northwind = {}));
 })(MIS || (MIS = {}));
-var MIS;
-(function (MIS) {
-    var Common;
-    (function (Common) {
-        var GridEditorDialog = (function (_super) {
-            __extends(GridEditorDialog, _super);
-            function GridEditorDialog() {
-                _super.apply(this, arguments);
-            }
-            GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
-            GridEditorDialog.prototype.destroy = function () {
-                this.onSave = null;
-                this.onDelete = null;
-                _super.prototype.destroy.call(this);
-            };
-            GridEditorDialog.prototype.updateInterface = function () {
-                _super.prototype.updateInterface.call(this);
-                // apply changes button doesn't work properly with in-memory grids yet
-                if (this.applyChangesButton) {
-                    this.applyChangesButton.hide();
-                }
-            };
-            GridEditorDialog.prototype.saveHandler = function (options, callback) {
-                this.onSave && this.onSave(options, callback);
-            };
-            GridEditorDialog.prototype.deleteHandler = function (options, callback) {
-                this.onDelete && this.onDelete(options, callback);
-            };
-            GridEditorDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], GridEditorDialog);
-            return GridEditorDialog;
-        }(Serenity.EntityDialog));
-        Common.GridEditorDialog = GridEditorDialog;
-    })(Common = MIS.Common || (MIS.Common = {}));
-})(MIS || (MIS = {}));
 /// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
 var MIS;
 (function (MIS) {
@@ -689,132 +903,6 @@ var MIS;
         }(MIS.Common.GridEditorDialog));
         Northwind.OrderDetailDialog = OrderDetailDialog;
     })(Northwind = MIS.Northwind || (MIS.Northwind = {}));
-})(MIS || (MIS = {}));
-var MIS;
-(function (MIS) {
-    var Common;
-    (function (Common) {
-        var GridEditorBase = (function (_super) {
-            __extends(GridEditorBase, _super);
-            function GridEditorBase(container) {
-                _super.call(this, container);
-                this.nextId = 1;
-            }
-            GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
-            GridEditorBase.prototype.id = function (entity) {
-                return entity.__id;
-            };
-            GridEditorBase.prototype.save = function (opt, callback) {
-                var _this = this;
-                var request = opt.request;
-                var row = Q.deepClone(request.Entity);
-                var id = row.__id;
-                if (id == null) {
-                    row.__id = this.nextId++;
-                }
-                if (!this.validateEntity(row, id)) {
-                    return;
-                }
-                var items = this.view.getItems().slice();
-                if (id == null) {
-                    items.push(row);
-                }
-                else {
-                    var index = Q.indexOf(items, function (x) { return _this.id(x) === id; });
-                    items[index] = Q.deepClone({}, items[index], row);
-                }
-                this.setEntities(items);
-                callback({});
-            };
-            GridEditorBase.prototype.deleteEntity = function (id) {
-                this.view.deleteItem(id);
-                return true;
-            };
-            GridEditorBase.prototype.validateEntity = function (row, id) {
-                return true;
-            };
-            GridEditorBase.prototype.setEntities = function (items) {
-                this.view.setItems(items, true);
-            };
-            GridEditorBase.prototype.getNewEntity = function () {
-                return {};
-            };
-            GridEditorBase.prototype.getButtons = function () {
-                var _this = this;
-                return [{
-                        title: this.getAddButtonCaption(),
-                        cssClass: 'add-button',
-                        onClick: function () {
-                            _this.createEntityDialog(_this.getItemType(), function (dlg) {
-                                var dialog = dlg;
-                                dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
-                                dialog.loadEntityAndOpenDialog(_this.getNewEntity());
-                            });
-                        }
-                    }];
-            };
-            GridEditorBase.prototype.editItem = function (entityOrId) {
-                var _this = this;
-                var id = entityOrId;
-                var item = this.view.getItemById(id);
-                this.createEntityDialog(this.getItemType(), function (dlg) {
-                    var dialog = dlg;
-                    dialog.onDelete = function (opt, callback) {
-                        if (!_this.deleteEntity(id)) {
-                            return;
-                        }
-                        callback({});
-                    };
-                    dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
-                    dialog.loadEntityAndOpenDialog(item);
-                });
-                ;
-            };
-            GridEditorBase.prototype.getEditValue = function (property, target) {
-                target[property.name] = this.value;
-            };
-            GridEditorBase.prototype.setEditValue = function (source, property) {
-                this.value = source[property.name];
-            };
-            Object.defineProperty(GridEditorBase.prototype, "value", {
-                get: function () {
-                    return this.view.getItems().map(function (x) {
-                        var y = Q.deepClone(x);
-                        delete y['__id'];
-                        return y;
-                    });
-                },
-                set: function (value) {
-                    var _this = this;
-                    this.view.setItems((value || []).map(function (x) {
-                        var y = Q.deepClone(x);
-                        y.__id = _this.nextId++;
-                        return y;
-                    }), true);
-                },
-                enumerable: true,
-                configurable: true
-            });
-            GridEditorBase.prototype.getGridCanLoad = function () {
-                return false;
-            };
-            GridEditorBase.prototype.usePager = function () {
-                return false;
-            };
-            GridEditorBase.prototype.getInitialTitle = function () {
-                return null;
-            };
-            GridEditorBase.prototype.createQuickSearchInput = function () {
-            };
-            GridEditorBase = __decorate([
-                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-                Serenity.Decorators.editor(),
-                Serenity.Decorators.element("<div/>")
-            ], GridEditorBase);
-            return GridEditorBase;
-        }(Serenity.EntityGrid));
-        Common.GridEditorBase = GridEditorBase;
-    })(Common = MIS.Common || (MIS.Common = {}));
 })(MIS || (MIS = {}));
 /// <reference path="../../Common/Helpers/GridEditorBase.ts" />
 var MIS;
@@ -3411,6 +3499,54 @@ var MIS;
             });
         })(TerritoryService = Northwind.TerritoryService || (Northwind.TerritoryService = {}));
     })(Northwind = MIS.Northwind || (MIS.Northwind = {}));
+})(MIS || (MIS = {}));
+var MIS;
+(function (MIS) {
+    var TimekeepingDB;
+    (function (TimekeepingDB) {
+        var DtrForm = (function (_super) {
+            __extends(DtrForm, _super);
+            function DtrForm() {
+                _super.apply(this, arguments);
+            }
+            DtrForm.formKey = 'TimekeepingDB.Dtr';
+            return DtrForm;
+        }(Serenity.PrefixedContext));
+        TimekeepingDB.DtrForm = DtrForm;
+        [['DtrId', function () { return Serenity.IntegerEditor; }], ['DtrDate', function () { return Serenity.DateEditor; }], ['DtrEmployeeId', function () { return Serenity.IntegerEditor; }], ['DtrIn', function () { return Serenity.DateEditor; }], ['DtrOut', function () { return Serenity.DateEditor; }], ['ShiftCode', function () { return Serenity.IntegerEditor; }], ['InsertDate', function () { return Serenity.DateEditor; }], ['InsertUserId', function () { return Serenity.IntegerEditor; }], ['UpdateDate', function () { return Serenity.DateEditor; }], ['UpdateUserId', function () { return Serenity.IntegerEditor; }], ['IsActive', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(DtrForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(TimekeepingDB = MIS.TimekeepingDB || (MIS.TimekeepingDB = {}));
+})(MIS || (MIS = {}));
+var MIS;
+(function (MIS) {
+    var TimekeepingDB;
+    (function (TimekeepingDB) {
+        var DtrRow;
+        (function (DtrRow) {
+            DtrRow.idProperty = 'DtrId';
+            DtrRow.localTextPrefix = 'TimekeepingDB.Dtr';
+            var Fields;
+            (function (Fields) {
+            })(Fields = DtrRow.Fields || (DtrRow.Fields = {}));
+            ['DtrId', 'DtrDate', 'DtrEmployeeId', 'DtrIn', 'DtrOut', 'ShiftCode', 'InsertDate', 'InsertUserId', 'UpdateDate', 'UpdateUserId', 'IsActive'].forEach(function (x) { return Fields[x] = x; });
+        })(DtrRow = TimekeepingDB.DtrRow || (TimekeepingDB.DtrRow = {}));
+    })(TimekeepingDB = MIS.TimekeepingDB || (MIS.TimekeepingDB = {}));
+})(MIS || (MIS = {}));
+var MIS;
+(function (MIS) {
+    var TimekeepingDB;
+    (function (TimekeepingDB) {
+        var DtrService;
+        (function (DtrService) {
+            DtrService.baseUrl = 'TimekeepingDB/Dtr';
+            var Methods;
+            (function (Methods) {
+            })(Methods = DtrService.Methods || (DtrService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                DtrService[x] = function (r, s, o) { return Q.serviceRequest(DtrService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = DtrService.baseUrl + '/' + x;
+            });
+        })(DtrService = TimekeepingDB.DtrService || (TimekeepingDB.DtrService = {}));
+    })(TimekeepingDB = MIS.TimekeepingDB || (MIS.TimekeepingDB = {}));
 })(MIS || (MIS = {}));
 var MIS;
 (function (MIS) {
