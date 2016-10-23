@@ -83,7 +83,7 @@ namespace MIS
         public static class Navigation
         {
             public static LocalText LogoutLink = "Logout";
-            public static LocalText SiteTitle = "Discount Web Tool";
+            public static LocalText SiteTitle = "M.I.S.";
             public static LocalText SiteTitleMini = "MIS";
 
         }
@@ -94,7 +94,7 @@ namespace MIS
             public static class Dashboard
             {
                 public static LocalText ContentDescription =
-                    "discount management and approval tool";
+                    "management information systems";
             }
 
             public static class ContextSidebar

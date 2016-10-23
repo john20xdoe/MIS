@@ -7811,6 +7811,34 @@ section.content > .s-DataGrid {
 .s-NoteDialog .ui-dialog-content {
   padding-bottom: 10px;
 }
+@font-face {
+  font-family: 'futuraMD';
+  src: url('../../fonts/16020_FUTURAM.ttf');
+  src: url('../../fonts/16020_FUTURAM.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 1.1em;
+  /*font-size-adjust: 1.0;*/
+}
+h1,
+h2,
+h3,
+.title-text {
+  font-family: 'PT Sans Narrow', 'Arial Narrow', sans-serif;
+}
+.logo {
+  font-weight: 600;
+  font-family: 'PT Sans Narrow', 'Arial Narrow', sans-serif !important;
+}
+.logo .logo-lg {
+  font-weight: 500;
+}
+.logo .logo-mini {
+  font-weight: 200;
+}
 /**
     Fonts
 */
