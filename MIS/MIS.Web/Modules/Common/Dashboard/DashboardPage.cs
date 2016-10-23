@@ -31,6 +31,7 @@ namespace MIS.Common.Pages
                         model.CustomerCount = connection.Count<CustomerRow>();
                         model.ProductCount = connection.Count<ProductRow>();
                     }
+                    model.ContextSidebar = new ContextSidebarModel();
                     return model;
                 });
 

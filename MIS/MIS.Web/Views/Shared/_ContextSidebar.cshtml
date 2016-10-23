@@ -1,0 +1,26 @@
+﻿@model MIS.Common.ContextSidebarModel
+
+<aside id="rightSidebar" class="control-sidebar control-sidebar-dark">
+    <div class="tab-content">
+        @{if (Model.SidebarTitle != null)
+            {
+                <h2>@Model.SidebarTitle</h2>
+            }
+        }
+
+        @{ if (Model.SidebarContent != null && Model.SidebarContent.Count > 0)
+            {
+                foreach (var item in Model.SidebarContent)
+                { //TODO : add CSS formatting/preview elements
+                    <p>@Html.Raw(item.ToString())</p>
+                }
+            }
+            else
+            {
+                <i>@Texts.Site.ContextSidebar.DefaultContent</i>
+            }
+        }
+
+    </div>
+</aside>
+<div class="control-sidebar-bg"></div>

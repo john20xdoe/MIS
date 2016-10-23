@@ -1,7 +1,7 @@
 ﻿
 namespace MIS.Common
 {
-    public class DashboardPageModel
+    public class DashboardPageModel : LandingPageBase
     {
         public int OpenOrders { get; set; }
         public int ClosedOrderPercent { get; set; }

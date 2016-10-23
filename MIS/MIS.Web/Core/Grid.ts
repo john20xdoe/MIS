@@ -3,8 +3,8 @@
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.filterable()
     export class Grid<TItem, TOptions> extends Serenity.EntityGrid<TItem, TOptions> {       
-        constructor(container: JQuery) {
-            super(container);
+        constructor(container: JQuery, options?: TOptions) {
+            super(container, options);
         }
         //protected getColumnsKey() { return "Northwind.Product"; }
         //protected getDialogType() { return <any>ProductDialog; }

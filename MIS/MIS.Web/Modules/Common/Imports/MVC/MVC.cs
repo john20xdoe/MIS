@@ -302,11 +302,20 @@ namespace MVC
 
         public static class Shared
         {
+            public const string _ContextSidebar = "~/Views/Shared/_ContextSidebar.cshtml";
             public const string _Layout = "~/Views/Shared/_Layout.cshtml";
             public const string _LayoutHead = "~/Views/Shared/_LayoutHead.cshtml";
             public const string _LayoutNoNavigation = "~/Views/Shared/_LayoutNoNavigation.cshtml";
             public const string Error = "~/Views/Shared/Error.cshtml";
             public const string LeftNavigation = "~/Views/Shared/LeftNavigation.cshtml";
+        }
+
+        public static class TimekeepingDB
+        {
+            public static class Dtr
+            {
+                public const string DtrIndex = "~/Modules/TimekeepingDB/Dtr/DtrIndex.cshtml";
+            }
         }
     }
 }

@@ -10,8 +10,8 @@
         //protected getService() { return ProductService.baseUrl; }
 
         //protected form = new ProductForm(this.idPrefix);
-        constructor() {
-            super();
+        constructor(options?: TOptions){
+            super(options);
         }
 
         //protected afterLoadEntity(): void {

@@ -54,9 +54,9 @@ namespace MIS
 
                 public static class Login
                 {
-                    public static LocalText FormTitle = "Welcome to SERENE (Serenity Application Template)";
+                    public static LocalText FormTitle = "MIS";
                     public static LocalText SignInButton = "Sign In";
-                    public static LocalText ForgotPassword = "forgot password?";
+                    public static LocalText ForgotPassword = "click here";
                     public static LocalText SignUpButton = "register a new account";
                 }
 
@@ -83,31 +83,39 @@ namespace MIS
         public static class Navigation
         {
             public static LocalText LogoutLink = "Logout";
-            public static LocalText SiteTitle = "MIS";
+            public static LocalText SiteTitle = "Discount Web Tool";
+            public static LocalText SiteTitleMini = "MIS";
+
         }
 
         public static class Site
         {
+
             public static class Dashboard
             {
                 public static LocalText ContentDescription =
-                    "a sample with random data (from free <em><a href = \"https://almsaeedstudio.com/\" target= \"_blank\">" +
-                    "AdminLTE theme</a></em>)";
+                    "discount management and approval tool";
+            }
+
+            public static class ContextSidebar
+            {
+                public static LocalText DefaultTitle = "Aside";
+                public static LocalText DefaultContent = "There seems to be nothing here.";
             }
 
             public static class BasicProgressDialog
             {
-                public static LocalText CancelTitle = "Operation cancelled. Waiting for in progress calls to complete...";
+                public static LocalText CancelTitle = "Operation cancelled. Waiting for ongoing calls to complete...";
                 public static LocalText PleaseWait = "Please wait...";
             }
 
             public static class BulkServiceAction
             {
                 public static LocalText AllHadErrorsFormat = "All {0} record(s) that are processed had errors!";
-                public static LocalText AllSuccessFormat = "Finished processing on {0} record(s) with success.";
-                public static LocalText ConfirmationFormat = "Perform this operation on {0} selected record(s)?";
+                public static LocalText AllSuccessFormat = "Finished processing {0} record(s) with success.";
+                public static LocalText ConfirmationFormat = "Confirm this operation on {0} selected record(s)?";
                 public static LocalText ErrorCount = "{0} error(s)";
-                public static LocalText NothingToProcess = "Please select some records to process!";
+                public static LocalText NothingToProcess = "You have not selected any records to process.";
                 public static LocalText SomeHadErrorsFormat = "Finished processing on {0} record(s) with success. {1} record(s) had errors!";
                 public static LocalText SuccessCount = "{0} done";
             }
@@ -142,7 +150,7 @@ namespace MIS
 
             public static class Layout
             {
-                public static LocalText FooterCopyright = "Copyright (c) 2015.";
+                public static LocalText FooterCopyright = "Copyright © 2016 | Red Core Solutions, Inc.";
                 public static LocalText FooterInfo = "Serenity Platform";
                 public static LocalText FooterRights = "All rights reserved.";
                 public static LocalText GeneralSettings = "General Settings";
@@ -166,6 +174,10 @@ namespace MIS
             {
                 public static LocalText Title = "ERROR";
             }
+            public static class Buttons
+            {
+                public static LocalText BackButton = "Back";
+            }
         }
 
         public static class Validation
@@ -180,10 +192,10 @@ namespace MIS
             public static LocalText EmailConfirm = "Emails entered doesn't match!";
             public static LocalText DeleteForeignKeyError = "Can't delete record. '{0}' table has " +
                 "records that depends on this one!";
-            public static LocalText NorthwindPhone = "Phone numbers should be entered in format '(503) 555-9831'.";
-            public static LocalText NorthwindPhoneMultiple = "Phone numbers should be entered in format '(503) 555-9831. " +
-                "Multiple numbers can be separated with comma.";
             public static LocalText SavePrimaryKeyError = "Can't save record. There is another record with the same {1} value!";
+            public static LocalText NumericOnlyError = "Only numeric values are allowed.";
+            public static LocalText UniqueViolation = "A site with same {0} (\"{1}\") exists. Please choose another value.";
+            public static LocalText NothingSelected = "No record selected.";
         }
     }
 }
