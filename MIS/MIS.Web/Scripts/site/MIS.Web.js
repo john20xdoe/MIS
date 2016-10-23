@@ -19,8 +19,8 @@ var MIS;
         //protected getNameProperty() { return ProductRow.nameProperty; }
         //protected getService() { return ProductService.baseUrl; }
         //protected form = new ProductForm(this.idPrefix);
-        function Dialog() {
-            _super.call(this);
+        function Dialog(options) {
+            _super.call(this, options);
         }
         Dialog = __decorate([
             Serenity.Decorators.registerClass(),
@@ -34,8 +34,8 @@ var MIS;
 (function (MIS) {
     var Grid = (function (_super) {
         __extends(Grid, _super);
-        function Grid(container) {
-            _super.call(this, container);
+        function Grid(container, options) {
+            _super.call(this, container, options);
         }
         Grid = __decorate([
             Serenity.Decorators.registerClass(),
@@ -4839,7 +4839,7 @@ var MIS;
             return DtrForm;
         }(Serenity.PrefixedContext));
         TimekeepingDB.DtrForm = DtrForm;
-        [['DtrId', function () { return Serenity.IntegerEditor; }], ['DtrDate', function () { return Serenity.DateEditor; }], ['DtrEmployeeId', function () { return Serenity.IntegerEditor; }], ['DtrIn', function () { return Serenity.DateEditor; }], ['DtrOut', function () { return Serenity.DateEditor; }], ['ShiftCode', function () { return Serenity.IntegerEditor; }], ['InsertDate', function () { return Serenity.DateEditor; }], ['InsertUserId', function () { return Serenity.IntegerEditor; }], ['UpdateDate', function () { return Serenity.DateEditor; }], ['UpdateUserId', function () { return Serenity.IntegerEditor; }], ['IsActive', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(DtrForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['DtrDate', function () { return Serenity.DateEditor; }], ['DtrEmployeeId', function () { return Serenity.IntegerEditor; }], ['DtrIn', function () { return Serenity.DateEditor; }], ['DtrOut', function () { return Serenity.DateEditor; }], ['ShiftCode', function () { return Serenity.IntegerEditor; }], ['InsertDate', function () { return Serenity.DateEditor; }], ['InsertUserId', function () { return Serenity.IntegerEditor; }], ['UpdateDate', function () { return Serenity.DateEditor; }], ['UpdateUserId', function () { return Serenity.IntegerEditor; }], ['IsActive', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(DtrForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(TimekeepingDB = MIS.TimekeepingDB || (MIS.TimekeepingDB = {}));
 })(MIS || (MIS = {}));
 var MIS;

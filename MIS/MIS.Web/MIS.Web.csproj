@@ -1159,6 +1159,8 @@
     <Content Include="Fonts\fontawesome-webfont.eot" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Content\site\site.Core.less" />
+    <Content Include="Views\Shared\_ContextSidebar.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1220,6 +1222,9 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberResponse.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\TimekeepingDB.DtrColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1675,6 +1680,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SiteInitialization.Migrations.cs" />
     <Compile Include="App_Start\SiteInitialization.cs" />
+    <Compile Include="Core\ContextSidebarModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1754,6 +1760,9 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.ShipperFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\TimekeepingDB.DtrEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />

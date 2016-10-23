@@ -1,11 +1,11 @@
 ﻿declare namespace MIS {
     class Dialog<TItem, TOptions> extends Serenity.EntityDialog<TItem, TOptions> {
-        constructor();
+        constructor(options?: TOptions);
     }
 }
 declare namespace MIS {
     class Grid<TItem, TOptions> extends Serenity.EntityGrid<TItem, TOptions> {
-        constructor(container: JQuery);
+        constructor(container: JQuery, options?: TOptions);
     }
 }
 declare namespace MIS.Administration {
@@ -2564,6 +2564,8 @@ declare namespace MIS {
     }
 }
 declare namespace MIS.TimekeepingDB {
+}
+declare namespace MIS.TimekeepingDB {
     class DtrForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -2598,28 +2600,28 @@ declare namespace MIS.TimekeepingDB {
         const idProperty: string;
         const localTextPrefix: string;
         namespace Fields {
-            const DtrId: any;
-            const DtrDate: any;
-            const DtrEmployeeId: any;
-            const DtrIn: any;
-            const DtrOut: any;
-            const ShiftCode: any;
-            const InsertDate: any;
-            const InsertUserId: any;
-            const UpdateDate: any;
-            const UpdateUserId: any;
-            const IsActive: any;
+            const DtrId: string;
+            const DtrDate: string;
+            const DtrEmployeeId: string;
+            const DtrIn: string;
+            const DtrOut: string;
+            const ShiftCode: string;
+            const InsertDate: string;
+            const InsertUserId: string;
+            const UpdateDate: string;
+            const UpdateUserId: string;
+            const IsActive: string;
         }
     }
 }
 declare namespace MIS.TimekeepingDB {
     namespace DtrService {
         const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<DtrRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<DtrRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<DtrRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<DtrRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Create(request: Serenity.SaveRequest<DtrRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<DtrRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<DtrRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<DtrRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;

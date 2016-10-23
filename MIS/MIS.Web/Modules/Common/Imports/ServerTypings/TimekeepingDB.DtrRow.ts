@@ -1,5 +1,4 @@
-﻿
-namespace MIS.TimekeepingDB {
+﻿namespace MIS.TimekeepingDB {
     export interface DtrRow {
         DtrId?: number;
         DtrDate?: string;
@@ -19,17 +18,17 @@ namespace MIS.TimekeepingDB {
         export const localTextPrefix = 'TimekeepingDB.Dtr';
 
         export namespace Fields {
-            export declare const DtrId;
-            export declare const DtrDate;
-            export declare const DtrEmployeeId;
-            export declare const DtrIn;
-            export declare const DtrOut;
-            export declare const ShiftCode;
-            export declare const InsertDate;
-            export declare const InsertUserId;
-            export declare const UpdateDate;
-            export declare const UpdateUserId;
-            export declare const IsActive;
+            export declare const DtrId: string;
+            export declare const DtrDate: string;
+            export declare const DtrEmployeeId: string;
+            export declare const DtrIn: string;
+            export declare const DtrOut: string;
+            export declare const ShiftCode: string;
+            export declare const InsertDate: string;
+            export declare const InsertUserId: string;
+            export declare const UpdateDate: string;
+            export declare const UpdateUserId: string;
+            export declare const IsActive: string;
         }
 
         ['DtrId', 'DtrDate', 'DtrEmployeeId', 'DtrIn', 'DtrOut', 'ShiftCode', 'InsertDate', 'InsertUserId', 'UpdateDate', 'UpdateUserId', 'IsActive'].forEach(x => (<any>Fields)[x] = x);
