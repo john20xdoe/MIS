@@ -1,7 +1,7 @@
 ﻿namespace MIS.Administration {
 
     @Serenity.Decorators.registerClass()
-    export class UserDialog extends Serenity.EntityDialog<UserRow, any> {
+    export class UserDialog extends Dialog<UserRow, any> {
         protected getFormKey() { return UserForm.formKey; }
         protected getIdProperty() { return UserRow.idProperty; }
         protected getIsActiveProperty() { return UserRow.isActiveProperty; }
