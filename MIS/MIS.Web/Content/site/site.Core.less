@@ -76,40 +76,89 @@ h1, h2, h3, .title-text {
 
 */
 
+/* Make the header bar 40px only (para maliit sa mobile)*/
+header.main-header {
+    .logo, .sidebar-toggle, .navbar,
+    #context-sidebar-toggle,
+    a.dropdown-toggle, .navbar-custom-menu {
+        min-height: 40px !important;
+        height: 40px;
+        line-height: 1em;
+    }
 
+    #context-sidebar-toggle, .sidebar-toggle {
+        font-size: 1.9em;
+        line-height: 1.9em;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
 
-
-
-
-/* ------------------------------------------------------------------------- */
-/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
-/* ------------------------------------------------------------------------- */
-
-
-.s-TimekeepingDB-DtrDialog {
-    > .size { width: 650px; }
-    .caption { width: 150px; }
+    .logo {
+        padding: 12px;
+    }
 }
 
-/* ------------------------------------------------------------------------- */
-/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
-/* ------------------------------------------------------------------------- */
+/* Main Content wrapper */
+section.content {
+    padding: 5px 10px;
 
-
-.s-TimekeepingDB-DtrDialog {
-    > .size { width: 650px; }
-    .caption { width: 150px; }
+    > .s-DataGrid {
+        border-top: 0px solid black;
+    }
 }
 
-/* ------------------------------------------------------------------------- */
-/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
-/* ------------------------------------------------------------------------- */
 
 
-.s-TimekeepingDB-DtrDialog {
-    > .size { width: 650px; }
-    .caption { width: 150px; }
+/* Left Sidebar stuff - for colors, see admin-lte/skins/skin-DWT.less */
+.sidebar-menu > li {
+    font-family: @verdana;
+    font-weight: normal;
+    font-size: 1.2em;
 }
+
+.sidebar-menu {
+    li a {
+        letter-spacing: -1px;
+    }
+
+    li.treeview.active {
+        border-top: 1px solid #5a5a5a;
+    }
+
+    .treeview-menu {
+        padding-left: 15px;
+    }
+
+    .treeview-menu > li > a {
+        font-size: 0.90em;
+    }
+
+    i.fa, i.glyphicon, i.icon {
+        text-align: center;
+        text-shadow: 0px 1px 0px #fff;
+    }
+}
+
+.sidebar-menu li.expanded > .treeview-menu {
+    display: block;
+}
+
+
+.sidebar-collapse {
+    .sidebar-menu {
+        i.fa, i.glyphicon, i.icon {
+            font-size: 1.2em;
+        }
+    }
+}
+
+.main-footer {
+    padding: 3px 15px;
+}
+
+
+
+
 
 /* ------------------------------------------------------------------------- */
 /* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */

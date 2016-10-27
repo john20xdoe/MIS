@@ -192,7 +192,6 @@ a:focus {
   -o-transition: margin-left 0.3s ease-in-out;
   transition: margin-left 0.3s ease-in-out;
   margin-bottom: 0;
-  margin-left: 230px;
   border: none;
   min-height: 50px;
   border-radius: 0;
@@ -378,10 +377,21 @@ a:focus {
   .main-header {
     position: relative;
   }
-  .main-header .logo,
   .main-header .navbar {
     width: 100%;
     float: none;
+  }
+  .main-header .navbar .logo {
+    width: 50px;
+  }
+  .main-header .navbar .logo > .logo-mini {
+    display: block;
+    margin-left: -15px;
+    margin-right: -15px;
+    font-size: 18px;
+  }
+  .main-header .navbar .logo > .logo-lg {
+    display: none;
   }
   .main-header .navbar {
     margin: 0;
@@ -630,20 +640,17 @@ a:focus {
     display: none!important;
     -webkit-transform: translateZ(0);
   }
-  .sidebar-mini.sidebar-collapse .main-header .logo {
+  .sidebar-mini.sidebar-collapse .main-header .navbar .logo {
     width: 50px;
   }
-  .sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini {
-    display: block;
+  .sidebar-mini.sidebar-collapse .main-header .navbar .logo > .logo-mini {
+    display: inline-block;
     margin-left: -15px;
     margin-right: -15px;
     font-size: 18px;
   }
-  .sidebar-mini.sidebar-collapse .main-header .logo > .logo-lg {
+  .sidebar-mini.sidebar-collapse .main-header .navbar .logo > .logo-lg {
     display: none;
-  }
-  .sidebar-mini.sidebar-collapse .main-header .navbar {
-    margin-left: 50px;
   }
 }
 .sidebar-menu,
@@ -7863,32 +7870,68 @@ h3,
 /**
 
 */
-/* ------------------------------------------------------------------------- */
-/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
-/* ------------------------------------------------------------------------- */
-.s-TimekeepingDB-DtrDialog > .size {
-  width: 650px;
+/* Make the header bar 40px only (para maliit sa mobile)*/
+header.main-header .logo,
+header.main-header .sidebar-toggle,
+header.main-header .navbar,
+header.main-header #context-sidebar-toggle,
+header.main-header a.dropdown-toggle,
+header.main-header .navbar-custom-menu {
+  min-height: 40px !important;
+  height: 40px;
+  line-height: 1em;
 }
-.s-TimekeepingDB-DtrDialog .caption {
-  width: 150px;
+header.main-header #context-sidebar-toggle,
+header.main-header .sidebar-toggle {
+  font-size: 1.9em;
+  line-height: 1.9em;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
-/* ------------------------------------------------------------------------- */
-/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
-/* ------------------------------------------------------------------------- */
-.s-TimekeepingDB-DtrDialog > .size {
-  width: 650px;
+header.main-header .logo {
+  padding: 12px;
 }
-.s-TimekeepingDB-DtrDialog .caption {
-  width: 150px;
+/* Main Content wrapper */
+section.content {
+  padding: 5px 10px;
 }
-/* ------------------------------------------------------------------------- */
-/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
-/* ------------------------------------------------------------------------- */
-.s-TimekeepingDB-DtrDialog > .size {
-  width: 650px;
+section.content > .s-DataGrid {
+  border-top: 0px solid black;
 }
-.s-TimekeepingDB-DtrDialog .caption {
-  width: 150px;
+/* Left Sidebar stuff - for colors, see admin-lte/skins/skin-DWT.less */
+.sidebar-menu > li {
+  font-family: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+  font-weight: normal;
+  font-size: 1.2em;
+}
+.sidebar-menu li a {
+  letter-spacing: -1px;
+}
+.sidebar-menu li.treeview.active {
+  border-top: 1px solid #5a5a5a;
+}
+.sidebar-menu .treeview-menu {
+  padding-left: 15px;
+}
+.sidebar-menu .treeview-menu > li > a {
+  font-size: 0.90em;
+}
+.sidebar-menu i.fa,
+.sidebar-menu i.glyphicon,
+.sidebar-menu i.icon {
+  text-align: center;
+  text-shadow: 0px 1px 0px #fff;
+}
+.sidebar-menu li.expanded > .treeview-menu {
+  display: block;
+}
+.sidebar-collapse .sidebar-menu i.fa,
+.sidebar-collapse .sidebar-menu i.glyphicon,
+.sidebar-collapse .sidebar-menu i.icon {
+  font-size: 1.2em;
+}
+.main-footer {
+  padding: 3px 15px;
 }
 /* ------------------------------------------------------------------------- */
 /* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
